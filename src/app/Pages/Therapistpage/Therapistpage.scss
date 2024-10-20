@@ -1,0 +1,159 @@
+$primary-color: #FE8235;
+
+
+.therapist-page {
+    padding: 1rem;
+    position: relative;
+    cursor: pointer;
+
+    .back-btn {
+       width: 20px;
+       height: 20px; 
+    }
+    .hero {
+       margin-top: 1rem;
+        h4{
+            margin: 0;
+            font-size: .7rem;
+            font-weight: 500;
+        }
+        .main {
+            font-weight: 700;
+        }
+
+        .abt-section {
+            .abt {
+               h2 {
+                margin: 0rem;
+                margin-top: 1rem;
+                font-size: 1.3rem;
+               }
+               p {
+                color: $primary-color;
+                font-size: .5rem;
+               }
+
+               .desc {
+                margin-top: 1rem;
+                font-size: .5rem;
+                color: black;
+
+                span {
+                    color: $primary-color;
+                }
+               }
+            }
+        }
+    }
+
+    .select-thp {
+      h2 {
+        margin: 0rem;
+        margin-top: 1rem;
+        font-size: 1.3rem;
+      }  
+
+      .thp-lists {
+        width: 100%;
+        overflow-x: scroll;
+        margin-top: 1rem;
+        ul {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+           list-style-type: none;
+           
+           li{
+           }
+        }
+      }
+    }
+
+    .fees-details {
+        display: flex;
+        justify-content: space-between;
+        padding: .5rem;
+        margin-top: 1rem;
+        background-color: rgb(251, 233, 198);
+
+        .tile {
+            display: flex;
+            flex-direction: column;
+            p{
+                font-size: .5rem;
+                margin: 0;
+            }
+            .info {
+                margin: auto;
+                color:$primary-color;
+            }
+            .title {
+                margin: auto;
+                color: rgb(80, 80, 146);
+            }
+        }
+    }
+
+    .date-select {
+        h2 {
+            margin: 0rem;
+            margin-top: 1rem;
+            font-size: 1.3rem;
+           }
+
+        ul {
+            overflow-x: scroll;
+            list-style-type: none;
+            margin: 0;
+            margin-top: 1rem;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+        }   
+    }
+
+    .time-select {
+        margin-top: 2rem;
+        h2 {
+            margin: 0rem;
+            margin-top: 1rem;
+            font-size: 1.3rem;
+           }
+
+        section {
+            ul {
+                list-style-type: none;
+                padding: 0;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+
+                li{
+                    display: inline-block;
+                    font-size: .5rem;
+                    margin-bottom: 1rem;
+                    border: 2px solid rgb(225, 225, 225);
+                    width: fit-content;
+                    padding: .5rem .7rem;
+                    border-radius: 3px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .button {
+      position: absolute;
+      margin: auto;
+      right: 0;
+      left: 0;
+      width: fit-content;
+      bottom: 20px;
+    }
+
+    .selected-time {
+        background-color: #FE8235;
+        color: white;
+    }
+}
