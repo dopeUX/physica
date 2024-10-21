@@ -4,7 +4,8 @@ const saveUser = async (payload: any) => {
   const url = "http://localhost:8000/api/user" 
   try {
     const res = await axios.post(url, payload);
-    localStorage.setItem('currentUser', res.data._id);
+    console.log(res.data, 'rrrrr')
+    localStorage.setItem('currentUser', res.data.data[0]._id);
     return res;
   } catch(err) {
     console.log(err)

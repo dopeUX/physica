@@ -156,4 +156,10 @@ $primary-color: #FE8235;
         background-color: #FE8235;
         color: white;
     }
+
+    .disabled-time { 
+        background-color: rgb(207, 207, 207) ;
+        border: none;
+        color: rgba(148, 148, 148, 0.963)
+    }
 }
