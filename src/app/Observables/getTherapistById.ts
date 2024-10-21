@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getTherapistById = async () => {
   const id = localStorage.getItem('therapistId');
-  const url = `http://localhost:8000/api/therapist/${id}`;
+  const url = `https://physica-server.vercel.app/api/therapist/${id}`;
   try {
     const res = await axios.get(url);
     return res.data;

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getAppointmentById = async () => {
   const id = localStorage.getItem('aptId')
-  const url = `http://localhost:8000/api/appointments/${id}`;
+  const url = `https://physica-server.vercel.app/api/appointments/${id}`;
   try {
     const res = await axios.get(url);
     return res.data;
