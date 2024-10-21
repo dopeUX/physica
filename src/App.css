@@ -6,3 +6,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.button-disabled {
+  background-color: rgb(171, 171, 171) !important;
+}

@@ -13,16 +13,24 @@ interface ConfirmationPageProps {
 
 const ConfirmationPage: React.FC<ConfirmationPageProps> = ({}) => {
   const navigate = useNavigate();
+  const [isLoading, setLoading] = useState(false);
   const [therapist, setTherapist] = useState<any>();
   const [currentUser, setCurrentUser] = useState<any>();
   const [appointment, setAppointment] = useState<any>();
   const [address, setAddress] = useState("");
 
   useEffect(() => {
+    setLoading(true);
     getCurrentTherapist();
     getCurrentUserById();
     getAppointment();
   }, []);
+
+  useEffect(() => {
+    if (therapist && currentUser && appointment) {
+      setLoading(false);
+    }
+  }, [therapist, currentUser, appointment]);
 
   const getCurrentTherapist = async () => {
     const res = await getTherapistById();
@@ -97,13 +105,15 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({}) => {
         />
 
         <PrimaryButton
-          classN="button"
+          classN={`button ${isLoading && "button-disabled"}`}
           title="Proceed"
           onsubmit={() => {
             if (address) {
-              alert("Appointment scheduled successfully!");
-              navigate("/");
-              localStorage.clear();
+              if (!isLoading) {
+                alert("Appointment scheduled successfully!");
+                navigate("/");
+                localStorage.clear();
+              }
             } else {
               alert("Pls enter the address");
             }

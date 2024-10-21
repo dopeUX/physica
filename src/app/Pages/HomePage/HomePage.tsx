@@ -10,6 +10,7 @@ interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
   const navigate = useNavigate();
+  const [isLoading, setLoading] = useState(false);
   const [user, setUser] = useState({
     name: "",
     mobileNumber: "",
@@ -27,6 +28,7 @@ const HomePage: React.FC<HomePageProps> = () => {
   const saveUserAPI = async (payload: any) => {
     const res = await saveUser(payload);
     if (res) {
+      setLoading(false);
       alert("user details saved!");
       navigate("/therapist");
     }
@@ -34,26 +36,32 @@ const HomePage: React.FC<HomePageProps> = () => {
 
   const handleSubmit = () => {
     let correct = true;
+    setLoading(true);
     if (correct && !user.name) {
       alert("name is required");
       correct = false;
+      setLoading(false);
     }
     if (correct && !user.mobileNumber) {
       alert("Pls enter valid 10 digit phone number");
+      setLoading(false);
     }
     if (correct && user.mobileNumber) {
       if (String(user.mobileNumber).length !== 10) {
         alert("Pls enter valid 10 digit phone number");
         correct = false;
+        setLoading(false);
       }
     }
     if (correct && !user.city) {
       alert("City is required");
       correct = false;
+      setLoading(false);
     }
     if (correct && !user.pincode) {
       alert("Pls enter valid pincode");
       correct = false;
+      setLoading(false);
     }
 
     if (correct) {
@@ -106,7 +114,15 @@ const HomePage: React.FC<HomePageProps> = () => {
           />
 
           <div className="submit-btn">
-            <PrimaryButton title="Proceed" onsubmit={handleSubmit} />
+            <PrimaryButton
+              classN={`${isLoading && "button-disabled"}`}
+              title="Proceed"
+              onsubmit={() => {
+                if (!isLoading) {
+                  handleSubmit();
+                }
+              }}
+            />
           </div>
         </div>
       </section>

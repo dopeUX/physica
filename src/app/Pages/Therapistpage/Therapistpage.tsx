@@ -22,6 +22,7 @@ const TherapistPage: React.FC<TherapistPageProps> = () => {
   const [selectedTime, setSelectedTime] = useState("");
   const [currentFormattedDate, setFormattedDate] = useState<any>();
   let [oMappings, setOMappings] = useState<any>({});
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     getThp();
@@ -69,6 +70,7 @@ const TherapistPage: React.FC<TherapistPageProps> = () => {
     }
   };
   const handleProceed = () => {
+    setLoading(true);
     initiateApp();
   };
 
@@ -92,15 +94,18 @@ const TherapistPage: React.FC<TherapistPageProps> = () => {
         bookingCompletionTime: new Date(),
         status: "onHold",
       };
-      console.log(payload, "pppppp");
       const res: any = await initiateAppointment(payload);
       if (res.data) {
         alert("Appointment initiated!");
         localStorage.setItem("aptId", res.data.insertedId);
         localStorage.setItem("therapistId", selectedTherapist._id);
+        setLoading(false);
         navigate("/confirmation");
+      } else {
+        setLoading(false);
       }
     } else {
+      setLoading(false);
       alert("Therapist and time are required to proceed ahead");
     }
   };
@@ -285,10 +290,12 @@ const TherapistPage: React.FC<TherapistPageProps> = () => {
       )}
 
       <PrimaryButton
-        classN="button"
+        classN={`button ${isLoading && 'button-disabled'}`}
         title="Proceed"
         onsubmit={() => {
-          handleProceed();
+          if(!isLoading) {
+           handleProceed();
+          }
         }}
       />
     </div>
