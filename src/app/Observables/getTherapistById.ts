@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const getCurrentUser = async () => {
-  const id = localStorage.getItem('currentUser')
-  const url = `http://localhost:8000/api/user/${id}`;
+const getTherapistById = async () => {
+  const id = localStorage.getItem('therapistId');
+  const url = `http://localhost:8000/api/therapist/${id}`;
   try {
     const res = await axios.get(url);
     return res.data;
@@ -14,4 +14,4 @@ const getCurrentUser = async () => {
 
 }
 
-export default getCurrentUser;
+export default getTherapistById;

@@ -19,7 +19,6 @@ const TherapistPage: React.FC<TherapistPageProps> = () => {
   const [selectedTherapist, setSelectedTherapist] = useState<any>();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentDateSelected, setCurrentDateSelected] = useState(0);
-  const [currentTimeFrame, setCurrentTimeFrame] = useState("morning");
   const [selectedTime, setSelectedTime] = useState("");
   const [currentFormattedDate, setFormattedDate] = useState<any>();
   let [oMappings, setOMappings] = useState<any>({});
@@ -97,6 +96,8 @@ const TherapistPage: React.FC<TherapistPageProps> = () => {
       const res: any = await initiateAppointment(payload);
       if (res.data) {
         alert("Appointment initiated!");
+        localStorage.setItem("aptId", res.data.insertedId);
+        localStorage.setItem("therapistId", selectedTherapist._id);
         navigate("/confirmation");
       }
     } else {
