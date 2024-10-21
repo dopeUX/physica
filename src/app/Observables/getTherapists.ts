@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const getTherapists = async () => {
-  const url = "https://physica-server.vercel.app/api/therapist" 
+  const server = process.env.REACT_APP_SERVER_URI;
+  const url = `${server}/api/therapist` 
   try {
     const res = await axios.get(url);
     return res.data;

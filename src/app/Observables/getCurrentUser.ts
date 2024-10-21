@@ -2,7 +2,8 @@ import axios from "axios";
 
 const getCurrentUser = async () => {
   const id = localStorage.getItem('currentUser')
-  const url = `https://physica-server.vercel.app/api/user/${id}`;
+  const server = process.env.REACT_APP_SERVER_URI;
+  const url = `${server}/api/user/${id}`;
   try {
     const res = await axios.get(url);
     return res.data;

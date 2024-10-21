@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const initiateAppointment = async (payload: any) => {
-  const url = "https://physica-server.vercel.app/api/appointments" 
+  const server = process.env.REACT_APP_SERVER_URI;
+  const url = `${server}/api/appointments` 
   try {
     const res = await axios.post(url, payload);
     return res.data;
